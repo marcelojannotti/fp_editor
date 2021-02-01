@@ -1,0 +1,237 @@
+<!DOCTYE html>
+<html>
+	<head>
+		<title>Editor de prestação de contas FAPERJ</title>
+		<style type="text/css">@import url("css/editor.css");</style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<script type="text/javascript" src="js/editor.js"></script>
+    <link rel="manifest" href="manifest.json"/>
+	</head>
+	<body class="mobile">
+	  <header>
+	  <nav id="btOptions"><button class="material-icons">&#xE5D2;</button></nav>
+	  <div id="headerTitle"><img src=""/> FAPERJ<br/>Editor de Formulários para Prestação de Contas</div>
+	  <nav id="btMore"><button class="material-icons">&#xe5d4;</button></nav>
+	  </header>
+	  <nav id="more">
+	  <button onclick="document.getElementById('headerTitle').click()" class="close material-icons">&#xe5cd;</button>	
+	  <button>Salvar</button>
+	  <button>Gerar PDFs</button>
+	  <hr/>
+	  <button>Ajuda</button>
+	  <button>Sobre</button>
+	  </nav>
+	  <nav id="options">
+	  <button onclick="document.getElementById('headerTitle').click()" class="close material-icons">&#xe5cd;</button>
+	  <button onclick="document.getElementsByTagName('main')[0].setAttribute('data-active','id');document.getElementById('headerTitle').click()">Identificação</button>
+	  <button>Relatório Técnico</button>	  
+	  <button onclick="document.getElementsByTagName('main')[0].setAttribute('data-active','carta');document.getElementById('headerTitle').click()">Carta de Apresentação</button>
+	  <button onclick="document.getElementsByTagName('main')[0].setAttribute('data-active','desp-cust');document.getElementById('headerTitle').click()">Despesas de Custeio</button>
+	  <button onclick="document.getElementsByTagName('main')[0].setAttribute('data-active','desp-capt');document.getElementById('headerTitle').click()">Despesas de Capital</button>
+	  <button>Balancete</button>
+	  <button onclick="document.getElementsByTagName('main')[0].setAttribute('data-active','transf');document.getElementById('headerTitle').click()">Termo de Transferência e Entrega de Bens</button>
+	  <button>Recibo de Colaborador Eventual - Pessoa Física</button>
+	  <button>Relatório de Diárias do Outorgado</button>
+	  <button>Relatório de Diárias de Terceiro</button>
+	  <button>Recibo de Compra de Equipamento / Material Permanente Usado</button>
+	  <button>Recibo de Repasse de Valor para Doutorando no Exterior</button>
+	  <button>Relatório de Diárias para Trabalho de Campo Coletivo</button>
+	  </nav>
+	  <main data-active="home">
+
+	  <section id="sec-home">
+	  <h1>Bem vindo!</h1>
+	  <p>Olá,</p>
+	  <p>&nbsp;&nbsp;Atualizamos o editor de formulários para prestação de contas. E nessa nova versão você encontrará novos recursos e maior acessibilidade para uso em tablet e smartfones.</p>
+	  
+	  <p>&nbsp;&nbsp;Caso encontre alguma falha, por favor entre em contato conosco através da Central de Atendimento da FAPERJ</p>
+	  </section>
+	  <section id="sec-id">
+	  <h1>Identificação</h1>
+<!--fieldset style="width:400px;margin:0px auto;">
+<div style="float:left;">
+<input type="radio" name="tipo" id="fomentoTipoA" value="A" onchange="xml.querySelector('faperj > fomento').setAttribute('tipo',this.value);displayObjResultText(xml,'editor',document.body);document.querySelector(&quot;input[name='tipoOut']&quot;).click();document.querySelector(&quot;input[name='vinculo']&quot;).click();" checked=""><label for="fomentoTipoA">Auxílio</label>
+</div>
+<div style="float:right;">
+<input type="radio" name="tipo" id="fomentoTipoB" value="B" onchange="xml.querySelector('faperj > fomento').setAttribute('tipo',convertXMLEntities(this.value));displayObjResultText(xml,'editor',document.body);document.querySelector(&quot;input[name='tipoOut']&quot;).click();document.querySelector(&quot;input[name='vinculo']&quot;).click();"><label for="fomentoTipoB">Bolsa</label>
+</div>
+</fieldset-->
+<br><table style="border:0px;width:100%;"><tbody>
+<tr>
+<th>Processo:</th>
+<td><input name="processo" type="text" value="" maxlength="20" style="width:100%" onchange="xml.querySelector('fomento').setAttribute('processo',this.value);" pattern="^E-26\/(\d){3}\.((\d){3}|(\d){6})\/(\d){4}$" required="yes"></td>
+<th>Data da Outorga: </th>
+<td><input name="projData" type="date" value="" onchange="xml.querySelector('projeto > outorga').setAttribute('data',convertDate(this.value));" required="yes" style="width:140px;"></td>
+</tr>
+<tr>
+<th>Nome do projeto: </th>
+<td colspan="3"><input name="projNome" type="text" maxlength="450" value="" onchange="xml.querySelector('projeto > nome').innerHTML=convertXMLEntities(this.value);" required="yes" style="width:100%;"></td>
+</tr>
+<tr>
+<th>Modalidade:</th>
+<td colspan="3"><input name="modalidade" type="text" value="" style="width:100%" onchange="xml.querySelector('fomento > modalidade').innerHTML=convertXMLEntities(this.value);" required="yes" maxlength="50"></td>
+</tr>
+<!--tr>
+<th>Tipo do outorgado:</th>
+<td colspan="3">
+<input name="tipoOut" id="outorgadoTipoPF" type="radio" value="PF" onchange="xml.querySelector('fomento > outorgado').setAttribute('tipo',this.value);xml.querySelector('fomento > outorgado').innerHTML = '<pessoafisica><nome></nome><vinculo></vinculo></pessoafisica>';displayObjResultText(xml,'editor',document.body);document.querySelector(&quot;input[name='vinculo']&quot;).click();" checked=""><label for="outorgadoTipoPF">Pessoa Física</label>&nbsp;&nbsp;&nbsp;<input name="tipoOut" id="outorgadoTipoPJ" type="radio" value="PJ" onchange="xml.querySelector('fomento > outorgado').setAttribute('tipo',this.value);xml.querySelector('fomento > outorgado').innerHTML = '<pessoajuridica><razao></razao><representante></representante><endereco></endereco><telefone></telefone><email></email></pessoajuridica>';displayObjResultText(xml,'editor',document.body);"><label for="outorgadoTipoPJ">Pessoa Jurídica</label>&nbsp;&nbsp;&nbsp;<input name="tipoOut" id="outorgadoTipoFJ" type="radio" value="FJ" onchange="xml.querySelector('fomento > outorgado').setAttribute('tipo',this.value);xml.querySelector('fomento > outorgado').innerHTML = '<pessoafisica><nome></nome><vinculo></vinculo></pessoafisica><pessoajuridica><razao></razao><representante></representante><endereco></endereco><telefone></telefone><email></email></pessoajuridica>';displayObjResultText(xml,'editor',document.body);document.querySelector(&quot;input[name='vinculo']&quot;).click();"><label for="outorgadoTipoFJ">Misto (Pessoa Física com Pessoa Jurídica)</label>
+</td>
+</tr>
+<tr-->
+<th style="font-weight:bold;">Pessoa Física</th>
+<td colspan="3">&nbsp;</td>
+</tr>
+<!--tr>
+<th>Vínculo:</th>
+<td colspan="3">
+<input name="vinculo" id="pessoafisicaVinculoI" type="radio" value="I" onchange="xml.querySelector('outorgado > pessoafisica').setAttribute('vinculo',this.value);xml.querySelector('outorgado > pessoafisica > vinculo').innerHTML = '<instituicao><nome></nome><departamento></departamento><endereco></endereco><telefone></telefone><email></email></instituicao>';displayObjResultText(xml,'editor',document.body);" checked=""><label for="pessoafisicaVinculoI">Instituição</label>&nbsp;&nbsp;&nbsp;<input name="vinculo" id="pessoafisicaVinculoN" type="radio" value="N" onchange="xml.querySelector('outorgado > pessoafisica').setAttribute('vinculo',this.value);xml.querySelector('outorgado > pessoafisica > vinculo').innerHTML = '<nenhum><endereco></endereco><telefone></telefone><email></email></nenhum>';xml.querySelector('projeto > endereco').innerHTML='';displayObjResultText(xml,'editor',document.body);"><label for="pessoafisicaVinculoN">Sem vínculo</label>
+</td>
+</tr-->
+<tr>
+<th>Outorgado:</th>
+<td><input name="outorgado" type="text" value="" style="width:100%" onchange="xml.querySelector('outorgado > pessoafisica > nome').innerHTML=convertXMLEntities(this.value);" maxlength="45" required="yes"></td>
+<th>CPF:</th>
+<td><input name="cpf" type="text" value="" style="width:100%" onchange="xml.querySelector('outorgado > pessoafisica').setAttribute('cpf',this.value);" maxlength="11" required="yes" pattern="^(\d){11}"></td>
+</tr>
+<tr>
+<th>Instituição:</th>
+<td><input name="instituicao" type="text" value="" style="width:100%" onchange="xml.querySelector('outorgado > pessoafisica > vinculo > instituicao > nome').innerHTML=convertXMLEntities(this.value);" maxlength="65" required="yes"></td>
+<th>CNPJ:</th>
+<td><input name="cnpjInst" type="text" value="" style="width:100%" onchange="xml.querySelector('outorgado > pessoafisica > vinculo > instituicao').setAttribute('cnpj',this.value);" maxlength="14" required="yes" pattern="^(\d){14}"></td>
+</tr>
+<tr>
+<th>Departamento:</th>
+<td colspan="3"><input name="departamento" type="text" value="" style="width:100%" onchange="xml.querySelector('outorgado > pessoafisica > vinculo > instituicao > departamento').innerHTML=convertXMLEntities(this.value);" maxlength="50" required="yes"></td>
+</tr>
+<tr>
+<th>Endereço:</th>
+<td colspan="3"><input name="endereco" type="text" value="" style="width:100%" onchange="xml.querySelector('outorgado > pessoafisica > vinculo > instituicao > endereco').innerHTML=convertXMLEntities(this.value);" maxlength="90" required="yes"></td>
+</tr>
+<tr>
+<th>Telefone:</th>
+<td colspan="3">(<input name="telefoneDDD" type="text" value="" style="width:25px;" onchange="xml.querySelector('outorgado > pessoafisica > vinculo > instituicao > telefone').setAttribute('ddd',this.value);" maxlength="2" required="yes">) <input name="telefone" type="text" maxlength="10" value="" onchange="xml.querySelector('outorgado > pessoafisica > vinculo > instituicao > telefone').innerHTML=convertXMLEntities(this.value);" required="yes" style="width:100px" pattern="^(9)?(\d){4}-(\d){4}$">
+</td>
+</tr>
+<tr>
+<th>E-mail:</th>
+<td><input name="email" type="email" value="" onchange="xml.querySelector('outorgado > pessoafisica > vinculo > instituicao > email').innerHTML=convertXMLEntities(this.value);" pattern="^[a-z0-9\._]+@([a-z0-9-]+\.){1,5}[a-z]{2,4}$" required="yes" style="width:100%"></td>
+</tr>
+<tr>
+<th>Total do valor concedido: R$</th>
+<td><input name="valTotal" type="text" value="0" onchange="xml.querySelector('projeto > auxilio > valor').innerHTML=Number(convertXMLEntities(this.value).replace(/\./gi,'').replace(/\,/gi,''));displayObjResultText(xml,'editor',document.body);" required="yes" pattern="(\d){3,}"></td>
+<th>Total por extenso: </th>
+<td><input name="valExtenso" type="text" value="" style="width:100%" onchange="xml.querySelector('projeto > auxilio > valor').setAttribute('extenso',this.value);displayObjResultText(xml,'editor',document.body);" required="yes"></td>
+</tr>
+</tbody></table>
+	  </section>
+	  <section id="sec-carta">
+	  <h1>Carta de Apresentação</h1>
+<input type="checkbox" onchange="xml.querySelector('faperj > fomento > carta > drd').setAttribute('checked',this.checked)"> Demonstrativos de Receitas e Despesas<br><input type="checkbox" onchange="xml.querySelector('faperj > fomento > carta > rdc').setAttribute('checked',this.checked)"> Relação dos Documentos Comprobatórios de Despesas Realizadas<br><input type="checkbox" onchange="xml.querySelector('faperj > fomento > carta > ttb').setAttribute('checked',this.checked)"> Termo de Transferência e Entrega de Bens acompanhado do documento emitido pelo Setor de Patrimônio da Instituição recebedora dos bens<br><input type="checkbox" onchange="xml.querySelector('faperj > fomento > carta > dcd').setAttribute('checked',this.checked)"> Documentos comprobatórios das despesas<br><input type="checkbox" onchange="xml.querySelector('faperj > fomento > carta > cds').setAttribute('checked',this.checked)"> Comprovante de Devolução de Saldo Remanescente<br><input type="checkbox" onchange="xml.querySelector('faperj > fomento > carta > tcc').setAttribute('checked',this.checked)"> Talão de Cheques composto de canhotos dos cheques utilizados, bem como, as folhas de cheque não utilizadas<br><input type="checkbox" onchange="xml.querySelector('faperj > fomento > carta > cbi').setAttribute('checked',this.checked)"> Cartão Bancário Inutilizado<br><input type="checkbox" onchange="xml.querySelector('faperj > fomento > carta > cec').setAttribute('checked',this.checked)"> Carta de encerramento da conta de recebimento dos recursos ou solicitação formal de encerramento emitida pelo banco em modelo padrão<br><input type="checkbox" onchange="xml.querySelector('faperj > fomento > carta > eaf').setAttribute('checked',this.checked)"> Extrato de Rendimentos de Aplicação Financeira<br><input type="checkbox" onchange="xml.querySelector('faperj > fomento > carta > ebc').setAttribute('checked',this.checked)"> Extrato bancário da conta apresentando toda movimentação realizada, com os saldos inicial e final zerados<br>
+	  </section>
+	  <section id="sec-desp-cust">
+	  <h1>Despesas de Custeio</h1>
+	  </section>
+	  <section id="sec-desp-capt">
+	  <h1>Despesas de Capital</h1>
+	  </section>
+	  <section>
+	  <h1>Resumo Financeiro</h1>
+	  </section>
+	  <section id="sec-transf">
+	  <h1>Termo de Transferência e Entrega de Bens (Modelo IV)</h1>
+	  <p style="text-align:center"><select name="origem"><option value="">Novo</option>
+<option value="">Termo 1</option></select></p>
+<fieldset id="idtc3ca743596903">
+<legend> Termo 1 <button onclick="removeNode(xml.querySelector('[id=idtc3ca743596903]'))">Imprimir</button>
+</legend>
+<p></p><fieldset style="width:600px; text-align:center">
+<legend style="text-align:left">Tipo de Termo de Transferência: </legend>
+<input type="radio" name="transfTipoidtc3ca743596903" value="I" onchange="xml.querySelector('#idtc3ca743596903 > destino').innerHTML='';xml.querySelector('#idtc3ca743596903').setAttribute('tipo',this.value);displayObjResultText(xml,'editor',document.body);" checked="">Mesma instituição&nbsp;&nbsp;&nbsp;
+  <input type="radio" name="transfTipoidtc3ca743596903" value="E" onchange="xml.querySelector('#idtc3ca743596903 > destino').innerHTML = '<instituicao><nome></nome><endereco></endereco></instituicao>';xml.querySelector('#idtc3ca743596903').setAttribute('tipo',this.value);displayObjResultText(xml,'editor',document.body);">Outra instituição&nbsp;&nbsp;&nbsp;
+  </fieldset><br>
+  Data do termo: <input name="transData" type="date" value="" onchange="xml.querySelector('#idtc3ca743596903').setAttribute('data',convertDate(this.value));" required="yes" style="width:140px;"><br><p></p>
+<table style="border:0px;">
+<thead>
+<tr>
+<th colspan="2">Nota Fiscal</th>
+<th rowspan="2">Descrição do Bem</th>
+<th colspan="3">Preço (R$)</th>
+<th rowspan="2">Localização</th>
+<th rowspan="2">Local de aquisição</th>
+<th rowspan="2">&nbsp;</th>
+</tr>
+<tr>
+<th>Nº</th>
+<th>Data</th>
+<th>Qtd.</th>
+<th>Unitário</th>
+<th>Total</th>
+</tr>
+<tr>
+<td><input name="nfNumero" type="text" style="width:70px;" maxlength="15"></td>
+<td><input name="nfData" type="date" style="width:140px"></td>
+<td><input name="bemDescricao" type="text" style="width:200px" maxlength="60"></td>
+<td><input name="bemQtd" type="text" style="width:25px"></td>
+<td><input name="bemUnit" type="text" style="width:100px"></td>
+<td>&nbsp;</td>
+<td><input name="bemLocal" type="text" style="width:140px" maxlength="60"></td>
+<td><select name="origem"><option value="B">Brasil</option>
+<option value="E">Exterior</option></select></td>
+<td colspan="10" style="text-align:right"><button onclick="var el = document.querySelectorAll('#idtc3ca743596903 thead td'); insereBem('idtc3ca743596903',el.item(0).firstChild.value,convertDate(el.item(1).firstChild.value),el.item(2).firstChild.value,el.item(3).firstChild.value,el.item(4).firstChild.value,el.item(6).firstChild.value,el.item(7).firstChild.value)">Adicionar</button></td>
+</tr>
+<tr><td colspan="10">&nbsp;</td></tr>
+</thead>
+<tbody></tbody>
+<tfoot>
+<tr><td colspan="10">&nbsp;</td></tr>
+<tr>
+<td colspan="5">TOTAL</td>
+<td>R$ 0,00</td>
+<td colspan="4"></td>
+</tr>
+</tfoot>
+</table>
+<button onclick="removeNode(xml.querySelector('[id=idtc3ca743596903]'))">Salvar</button>
+<button onclick="removeNode(xml.querySelector('[id=idtc3ca743596903]'))">Remover</button>
+</fieldset>
+	  </section>
+	  <section>
+	  <h1>Relatório de Diárias do Outorgado</h1>
+	  </section>
+	  <section>
+	  <h1>Relatório de Diárias de Terceiro</h1>
+	  </section>
+	  <section>
+	  <h1>Recibo de Compra de Equipamento / Material Permanente Usado</h1>
+	  </section>
+	  <section>
+	  <h1>Recibo de Repasse de Valor para Doutorando no Exterior</h1>
+	  </section>
+	  <section>
+	  <h1>Relatório de Diárias para Trabalho de Campo Coletivo</h1>
+	  </section>
+	  <section>
+	  <h1>Relatório Técnico</h1>
+	  </section>
+	  <main>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+  navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+  // Registration was successful
+  console.log('Registered!');
+  }, function(err) {
+  // registration failed :(
+  console.log('ServiceWorker registration failed: ', err);
+  }).catch(function(err) {
+  console.log(err);
+  });
+  });
+  } else {
+  console.log('service worker is not supported');
+  }
+  </script>
+	</body>
+</html>
