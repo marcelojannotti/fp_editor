@@ -27,12 +27,22 @@ body.mobile header > nav button {
 }
 body.mobile header > div#headerTitle {
   display:inline-block;
-  font-size:130%;
+  font-size:0.30in;
   font-weight:bold;
   color: white;
   width:calc(100% - 1in - 40px);
 }
-
+body.mobile header > div#headerTitle > img {
+  display: inline-block;
+  margin: 0 15px;
+  width: auto;
+  height: 90%;
+  position: relative;
+  top: 4px;
+}
+body.mobile header > div#headerTitle > div {
+  display: inline-block;
+}
 body.mobile > nav#more.show {
   display:block;
 }
