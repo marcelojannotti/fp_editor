@@ -57,7 +57,7 @@ body.mobile > nav#options, body.mobile > nav#more {
   width: calc(80% - 60px);
   max-width:300px;
   padding: 10px 30px;
-  background:gray;
+  background:rgba(128, 128, 128, .9);
   overflow:auto;
 }
 
