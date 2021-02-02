@@ -7,9 +7,9 @@ body.mobile header {
   background: maroon;
   width:100%;
   height:0.7in;
+  padding: 2px 0;
   position:fixed;
   top:0;
-  overflow: hidden;
 }
 
 body.mobile header > nav#btOptions {
@@ -31,7 +31,9 @@ body.mobile header > div#headerTitle {
   font-weight:bold;
   color: white;
   width:calc(100% - 1in - 40px);
+  overflow: hidden;
 }
+
 body.mobile header > div#headerTitle > img {
   display: inline-block;
   margin: 0 15px;
@@ -112,4 +114,14 @@ body.mobile main[data-active="desp-capt"] #sec-desp-capt,
 body.mobile main[data-active="transf"] #sec-transf
 {
   display:block;
+}
+
+@media screen and (max-device-width: 480px){
+  body.mobile header > div#headerTitle > img,
+  body.mobile header > div#headerTitle > div > span:first-child {
+    display:none;
+  }
+  body.mobile header > div#headerTitle > div > span:last-child {
+    display:block;
+  }
 }
