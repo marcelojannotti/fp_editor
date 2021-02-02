@@ -53,7 +53,7 @@ body.mobile > nav#options, body.mobile > nav#more {
   display: none;
   position:fixed;
   top:0;
-  height:100%;
+  height:calc(100% - 20px);
   width: calc(80% - 60px);
   max-width:300px;
   padding: 10px 30px;
